@@ -1,0 +1,32 @@
+﻿@page "/"
+@using Pin.CoffeeMachines.Components
+@using Pin.CoffeeMachines.Model;
+
+
+<PageTitle>Index</PageTitle>
+
+@if(currentCoffeeMachine == null)
+{
+    <CoffeeMachineList
+        Title="Howest coffee machines" 
+        Items="displayMachines"
+        OnAdd="OnAddCoffeeMachine"
+        OnEdit="OnEditCoffeeMachine"
+        OnDelete="OnDeleteCoffeeMachine" />
+}
+
+else
+{
+    <CoffeeMachineForm 
+        CoffeeMachine="currentCoffeeMachine" 
+        OnSave="SaveCoffeeMachine"
+        OnCancel="CancelOperation" />
+}
+
+@if(showDeleteMessagebox) {
+    <MessageBox Message="Sure you want to delete?" OnConfirm="DeleteConfirmed"/>
+}
+
+<CoffeeMachineOverview Title="Leaderboard broken machines" Machines="leaderboardMachines" />
+<CoffeeMachineOverview Title="Gray machines" Machines="grayMachines" />
+

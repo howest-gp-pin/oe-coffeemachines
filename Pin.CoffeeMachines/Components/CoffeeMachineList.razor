@@ -1,0 +1,50 @@
+﻿@using Pin.CoffeeMachines.Model;
+<h3>@Title</h3>
+
+<button class="btn btn-primary" @onclick="e => OnAdd.InvokeAsync()">Add machine</button>
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Description</th>
+            <th>Name</th>
+            <th>Times defect</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var coffeeMachine in Items)
+        {
+            <tr>
+                <td>
+                    <button class="btn btn-warning" @onclick="e => OnEdit.InvokeAsync(coffeeMachine)">Edit</button>
+                </td>
+                <td>@coffeeMachine.Description</td>
+                <td>@coffeeMachine.Color</td>
+                <td>@coffeeMachine.TimesDefected</td>
+                <td>
+                    <button class="btn btn-danger" @onclick="e => OnDelete.InvokeAsync(coffeeMachine)">Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    [Parameter]
+    public string Title { get; set; }
+
+    [Parameter]
+    public CoffeeMachine[] Items { get; set; }
+
+    [Parameter]
+    public EventCallback OnAdd { get; set; }
+
+    [Parameter]
+    public EventCallback<CoffeeMachine> OnEdit { get; set; }
+
+    [Parameter]
+    public EventCallback<CoffeeMachine> OnDelete { get; set; }
+
+
+}

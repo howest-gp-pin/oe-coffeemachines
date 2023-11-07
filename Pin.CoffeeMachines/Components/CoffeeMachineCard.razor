@@ -1,0 +1,14 @@
+﻿@using Pin.CoffeeMachines.Model;
+
+<article>
+    <h4>@Machine.Description</h4>
+    <p>@Machine.TimesDefected</p>
+    <p>@Machine.Color</p>
+</article>
+
+
+@code {
+
+    [Parameter]
+    public CoffeeMachine Machine { get; set; }
+}

@@ -1,0 +1,26 @@
+﻿@using Pin.CoffeeMachines.Model;
+
+<EditForm Model="@CoffeeMachine" OnValidSubmit="e => OnSave.InvokeAsync(CoffeeMachine)">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="form-group">
+        <label for="description">Description: </label>
+        <InputText id="description" class="form-control" @bind-Value="CoffeeMachine.Description" />
+        <ValidationMessage For="@(() => CoffeeMachine.Description)" />
+    </div>
+    <div class="form-group">
+        <label for="color">Color: </label>
+        <InputTextArea id="color" class="form-control" @bind-Value="CoffeeMachine.Color" />
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <button type="button" class="btn btn-warning" @onclick="e => OnCancel.InvokeAsync()">Cancel</button>
+</EditForm>
+
+@code {
+    [Parameter]
+    public CoffeeMachine CoffeeMachine { get; set; }
+    [Parameter]
+    public EventCallback<CoffeeMachine> OnSave { get; set; }
+    [Parameter]
+    public EventCallback OnCancel { get; set; }
+}

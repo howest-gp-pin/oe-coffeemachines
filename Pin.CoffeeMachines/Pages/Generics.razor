@@ -1,0 +1,26 @@
+﻿@page "/generics"
+@using Pin.CoffeeMachines.Components
+@inject ICrudService<CoffeeMachine> coffeeMachineService;
+<h3>Generics</h3>
+
+<MachineList TModel="CoffeeMachine" Machines="coffeeMachines"></MachineList>
+<MachineList TModel="SodaMachine" Machines="sodaMachines"></MachineList>
+
+@code {
+    private CoffeeMachine[] coffeeMachines = new CoffeeMachine[0];
+    private SodaMachine[] sodaMachines = new SodaMachine[0];
+    protected async override Task OnInitializedAsync()
+    {
+        coffeeMachines = (await coffeeMachineService.GetAll()).ToArray();
+
+        var inmemorySodaMachines = new SodaMachine[]
+        {
+            new SodaMachine { Id = Guid.NewGuid(), Color = "Blue" , Description = "Pepsi machine", NumberOfRacks = 4, TimesDefected = 0 },
+            new SodaMachine { Id = Guid.NewGuid(), Color = "Red" , Description = "Coca-cola machine", NumberOfRacks = 5, TimesDefected = 1 }
+        };
+
+        sodaMachines = inmemorySodaMachines;
+
+    }
+
+}

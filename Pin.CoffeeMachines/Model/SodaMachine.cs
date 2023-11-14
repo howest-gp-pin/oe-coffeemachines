@@ -2,8 +2,8 @@
 
 namespace Pin.CoffeeMachines.Model
 {
-    public class CoffeeMachine : Machine
+    public class SodaMachine : Machine
     {
-        public bool HasBeans { get; set; }
+        public int NumberOfRacks { get; set; }
     }
 }

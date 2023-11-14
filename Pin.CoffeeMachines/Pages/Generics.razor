@@ -3,8 +3,18 @@
 @inject ICrudService<CoffeeMachine> coffeeMachineService;
 <h3>Generics</h3>
 
-<MachineList TModel="CoffeeMachine" Machines="coffeeMachines"></MachineList>
-<MachineList TModel="SodaMachine" Machines="sodaMachines"></MachineList>
+<MachineList TModel="CoffeeMachine" Machines="coffeeMachines" Title="Coffee machines">
+    <ListInfo>
+        <p>This is a list of all the Howest coffee machines.</p>
+    </ListInfo>
+</MachineList>
+<MachineList TModel="SodaMachine" Machines="sodaMachines" Title="Soda machines">
+    <ListInfo>
+        <p>There is a list of the follow suppliers:</p>
+        <img width="100" src="https://upload.wikimedia.org/wikipedia/commons/6/68/Pepsi_2023.svg" />
+        <img width="100" src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Coca-Cola_logo.svg" />
+    </ListInfo>
+</MachineList>
 
 @code {
     private CoffeeMachine[] coffeeMachines = new CoffeeMachine[0];

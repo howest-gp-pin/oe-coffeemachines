@@ -1,6 +1,7 @@
 ﻿@typeparam TModel where TModel : Machine
 
-<h3>MachineList</h3>
+<h3>@Title</h3>
+<div>@ListInfo</div>
 <ul>
     @foreach(var machine in Machines)
     {
@@ -11,7 +12,14 @@
 @code {
 
     [Parameter]
+    public string Title { get; set; }
+
+    [Parameter]
     public TModel[] Machines { get; set; }
+
+    [Parameter]
+    public RenderFragment? ListInfo { get; set; }
+
     protected override Task OnInitializedAsync()
     {
         return base.OnInitializedAsync();

@@ -34,3 +34,11 @@ else
 <CoffeeMachineOverview Title="Leaderboard broken machines" Machines="leaderboardMachines" />
 <CoffeeMachineOverview Title="Gray machines" Machines="grayMachines" />
 
+
+<ul>
+    @foreach(var bean in allBeans)
+    {
+        <li>@bean.Name</li>
+    }
+</ul>
+

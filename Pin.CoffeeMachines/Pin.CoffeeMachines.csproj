@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.Net.Http.Json" Version="6.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Pin.CoffeeMachines.Lib\Pin.CoffeeMachines.Lib.csproj" />
   </ItemGroup>
 

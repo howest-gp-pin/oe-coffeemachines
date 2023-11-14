@@ -11,6 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
+builder.Services.AddTransient<ICoffeeTypeProvider, ApiCoffeeProvider>();
+builder.Services.AddScoped<HttpClient>();
 
 builder.Services.AddTransient<ICrudService<CoffeeMachine>, FakeCofeeMachineService>();
 

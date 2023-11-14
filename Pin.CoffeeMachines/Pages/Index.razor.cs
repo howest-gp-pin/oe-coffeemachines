@@ -16,8 +16,13 @@ namespace Pin.CoffeeMachines.Pages
 
         private CoffeeMachine machineToDelete;
 
+        private List<Bean> allBeans = new List<Bean>();
+
         [Inject]
         private ICrudService<CoffeeMachine> coffeeMachineService { get; set; }
+
+        [Inject]
+        private ICoffeeTypeProvider coffeeTypeProvider { get; set; }
 
         protected async override Task OnInitializedAsync()
         {
@@ -30,6 +35,9 @@ namespace Pin.CoffeeMachines.Pages
 
             grayMachines = displayMachines.Where(machine => machine.Color.ToLower() == "gray" || machine.Color.ToLower() == "grey")
                                           .ToArray();
+
+
+            allBeans = await coffeeTypeProvider.GetAllBeans();
         }
 
         private void OnAddCoffeeMachine()

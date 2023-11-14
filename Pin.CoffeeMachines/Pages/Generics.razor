@@ -1,6 +1,7 @@
 ﻿@page "/generics"
 @using Pin.CoffeeMachines.Components
 @inject ICrudService<CoffeeMachine> coffeeMachineService;
+@inject IJSRuntime jsRuntime;
 <h3>Generics</h3>
 
 <MachineList TModel="CoffeeMachine" Machines="coffeeMachines" Title="Coffee machines">
@@ -16,9 +17,17 @@
     </ListInfo>
 </MachineList>
 
+<canvas id="myChart"></canvas>
+
+@if(!chartVisible)
+{
+    <button @onclick="DisplayChart">Display chart</button>
+}
+
 @code {
     private CoffeeMachine[] coffeeMachines = new CoffeeMachine[0];
     private SodaMachine[] sodaMachines = new SodaMachine[0];
+    private bool chartVisible = false;
     protected async override Task OnInitializedAsync()
     {
         coffeeMachines = (await coffeeMachineService.GetAll()).ToArray();
@@ -31,6 +40,14 @@
 
         sodaMachines = inmemorySodaMachines;
 
+    }
+
+    private async void DisplayChart()
+    {
+        chartVisible = true;
+        var machineTypes = new[] { "coffee", "soda" };
+        var counts = new[] { coffeeMachines.Length, sodaMachines.Length };
+        await jsRuntime.InvokeVoidAsync("displayChart", (object)machineTypes, (object)counts);
     }
 
 }

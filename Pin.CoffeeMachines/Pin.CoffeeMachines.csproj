@@ -6,4 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Pin.CoffeeMachines.Lib\Pin.CoffeeMachines.Lib.csproj" />
+  </ItemGroup>
+
 </Project>

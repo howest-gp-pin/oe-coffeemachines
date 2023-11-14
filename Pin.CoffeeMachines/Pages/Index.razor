@@ -1,9 +1,13 @@
 ﻿@page "/"
 @using Pin.CoffeeMachines.Components
+@using Pin.CoffeeMachines.Lib
 @using Pin.CoffeeMachines.Model;
 
 
 <PageTitle>Index</PageTitle>
+
+<Bean Title="Arabica"></Bean>
+<Bean Title="Robusta" BeanColor="green"></Bean>
 
 @if(currentCoffeeMachine == null)
 {
